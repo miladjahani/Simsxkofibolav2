@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>SimSXEWCu Pro v7.0 | شبیه‌ساز مهندسی مدار استخراج حلالی و الکترووینینگ مس</title>
+    <meta name="description" content="نرم‌افزار جامع و صنعتی شبیه‌سازی موازنه جرم و الکتروشیمی مدار استخراج حلالی و الکترووینینگ مس (Copper SX-EW Simulation) منطبق بر مدل مهندسی جوزف کافومبیلا نسخه ۷.۰" />
+    <meta name="theme-color" content="#080a0e" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <!-- Google Fonts: Vazirmatn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#080a0e] text-slate-100 antialiased selection:bg-copper-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="./src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(err => {
+            console.log('SW registration failed: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

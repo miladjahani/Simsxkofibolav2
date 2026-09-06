@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="50%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#9a3412"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#080a0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#bgGrad)" stroke="#f97316" stroke-width="2.5"/>
+  <!-- Cathode Plates Symbol -->
+  <rect x="25" y="25" width="8" height="50" rx="2" fill="#38bdf8"/>
+  <rect x="42" y="25" width="8" height="50" rx="2" fill="url(#cuGrad)"/>
+  <rect x="59" y="25" width="8" height="50" rx="2" fill="#38bdf8"/>
+  <rect x="76" y="25" width="8" height="50" rx="2" fill="url(#cuGrad)"/>
+  <!-- Top Busbar -->
+  <rect x="20" y="20" width="67" height="6" rx="2" fill="#fbbf24"/>
+  <!-- Chemical Text -->
+  <text x="50" y="88" font-family="sans-serif" font-weight="900" font-size="14" fill="#f97316" text-anchor="middle" letter-spacing="1">SX-EW</text>
+</svg>
