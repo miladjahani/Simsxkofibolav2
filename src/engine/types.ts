@@ -94,6 +94,20 @@ export interface SimulationResults {
   feMnSpentElectrolyte: number; // نسبت Fe/Mn در الکترولیت برگشتی
   mn3SpentElectrolyte: number;  // غلظت منگنز(III) در الکترولیت برگشتی (g/L)
   mno4SpentElectrolyte: number; // غلظت پرمنگنات در الکترولیت برگشتی (g/L)
+
+  // --- خروجی‌های توسعه‌یافته مدل فرمول‌محور (v7.1) ---
+  organicFlow: number;            // دبی فاز آلی مدار (m3/h)
+  cuInFeedTotal: number;          // بار مس کل خوراک (t/h)
+  copperToElectrolyte: number;    // مس انتقال‌یافته به الکترولیت (kg/h)
+  feNetToElectrolyte: number;     // آهن خالص ورودی به الکترولیت (kg/h)
+  washWaterFlow: number;          // دبی آب شستشو / اسکراب (m3/h)
+  mnWashEfficiency: number;       // راندمان شستشوی منگنز (%)
+  feScrubEfficiency: number;      // راندمان اسکراب آهن فریک (%)
+  cellVoltage: number;            // ولتاژ سلول الکترووینینگ (V)
+  energyConsumption: number;      // مصرف ویژه انرژی (kWh/t Cu)
+  totalEnergyMW: number;          // توان الکتریکی کل مدار EW (MW)
+  totalCells: number;             // تعداد کل سلول‌های الکترووینینگ
+  cathodePerCell: number;         // تولید کاتدی هر سلول (kg/h)
   cobaltConsumption: number;    // مصرف کبالت سولفات (kg/t Cu)
   acidConsumption: number;      // مصرف اسید سولفوریک در EW (t/t Cu)
   deminWaterConsumption: number;// مصرف آب بدون املاح در EW (m3/t Cu)

@@ -4,7 +4,7 @@ import {
   Plus, 
   HelpCircle, 
   Download, 
-  CloudCheck, 
+  Cloud, 
   Edit3, 
   Trash2, 
   Copy, 

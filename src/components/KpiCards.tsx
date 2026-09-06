@@ -1,6 +1,6 @@
 import React from 'react';
 import { SimulationResults } from '../engine/types';
-import { TrendingUp, Zap, Droplets, ShieldCheck, Activity, Layers } from 'lucide-react';
+import { TrendingUp, Zap, ShieldCheck, Activity, Layers, Flame } from 'lucide-react';
 
 interface KpiCardsProps {
   results: SimulationResults;
@@ -55,12 +55,12 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ results }) => {
       badge: results.feMnSpentElectrolyte >= 7.0 ? 'محافظت آند مطلوب' : 'هشدار خورندگی آند'
     },
     {
-      title: 'سلول‌های الکترووینینگ و بلید',
-      value: `${Math.round(results.numCommercialCells + results.numScavengerCells)} سلول`,
-      subtext: `${results.numCommercialCells.toFixed(1)} تجاری + ${results.numScavengerCells.toFixed(1)} اسکونجر | بلید: ${results.ewbFlow.toFixed(2)} m³/h`,
-      icon: Droplets,
-      color: 'from-cyan-500/20 to-sky-600/10 text-cyan-400 border-cyan-500/30',
-      badge: `راندمان کاتد: ${results.ceCommercial.toFixed(1)}%`
+      title: 'مصرف ویژه انرژی الکترووینینگ (DC)',
+      value: `${results.energyConsumption.toFixed(0)} kWh/t`,
+      subtext: `${results.cellVoltage.toFixed(2)} V | ${results.totalEnergyMW.toFixed(2)} MW | ${Math.round(results.numCommercialCells + results.numScavengerCells)} سلول | بلید: ${results.ewbFlow.toFixed(2)} m³/h`,
+      icon: Flame,
+      color: 'from-orange-500/20 to-rose-600/10 text-orange-400 border-orange-500/30',
+      badge: `کاتد: ${results.ceCommercial.toFixed(1)}% CE`
     }
   ];
 

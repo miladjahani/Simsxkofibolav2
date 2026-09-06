@@ -37,7 +37,7 @@ export const INDUSTRIAL_TEMPLATES: IndustrialTemplate[] = [
       kFactor: 1.1858,
       washStageOA: 50,
       washBypass: 40,
-      feScrubbingEff: 50
+      feScrubbingEff: 65
     }
   },
   {
@@ -65,7 +65,7 @@ export const INDUSTRIAL_TEMPLATES: IndustrialTemplate[] = [
       kFactor: 1.1858,
       washStageOA: 50,
       washBypass: 40,
-      feScrubbingEff: 50
+      feScrubbingEff: 65
     }
   },
   {
@@ -121,7 +121,7 @@ export const INDUSTRIAL_TEMPLATES: IndustrialTemplate[] = [
       kFactor: 1.1858,
       washStageOA: 50,
       washBypass: 40,
-      feScrubbingEff: 50
+      feScrubbingEff: 65
     }
   },
   {
@@ -149,7 +149,7 @@ export const INDUSTRIAL_TEMPLATES: IndustrialTemplate[] = [
       kFactor: 1.1858,
       washStageOA: 50,
       washBypass: 40,
-      feScrubbingEff: 50
+      feScrubbingEff: 65
     }
   }
 ];

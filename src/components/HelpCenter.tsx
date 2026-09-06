@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, BookOpen, Search, Atom, Zap, ShieldAlert, FileText, CheckCircle2, Compass, Layers, Activity } from 'lucide-react';
+import { X, BookOpen, Search, Atom, Zap, ShieldAlert, FileText, CheckCircle2, Compass, Layers, Activity, Sliders, FlaskConical } from 'lucide-react';
 import { PARAMETERS_ENCYCLOPEDIA, ParameterGuideItem } from '../data/parametersGuide';
 import { FLOWSHEET_METADATA } from '../data/referenceDatasets';
 import { ProcessFlowsheet } from '../engine/types';
@@ -299,10 +299,60 @@ export const HelpCenter: React.FC<HelpCenterProps> = ({ isOpen, onClose, initial
                   بر مبنای مقاله مدل‌سازی استخراج مس با استخراج‌کننده‌های کیلیتور هیدروکسی‌اکسیم (Kafumbila, 2024)، تعادل تبادل کاتیونی و استریپینگ توسط رابطه زیر تعیین می‌شود:
                 </p>
                 <div className="bg-slate-900 p-3 rounded-lg font-mono text-copper-300 text-xs border border-slate-750 my-2 space-y-1 dir-ltr text-left">
-                  <div>Cu²⁺_aq + 2 \overline{RH}_org ⇌ \overline{R₂Cu}_org + 2 H⁺_aq</div>
-                  <div>Fe³⁺_aq + 3 \overline{RH}_org ⇌ \overline{R₃Fe}_org + 3 H⁺_aq</div>
+                  <div>Cu²⁺_aq + 2 RH_org ⇌ R₂Cu_org + 2 H⁺_aq</div>
+                  <div>Fe³⁺_aq + 3 RH_org ⇌ R₃Fe_org + 3 H⁺_aq</div>
                   <div>ML = (v/v%) × 0.488256  [g/L Cu]</div>
                   <div>%ML = ([Cu]_LO / ML) × 100 ≈ 80% (جهت جلوگیری از لودینگ فریک)</div>
+                  <div>vv% = (ΔCu_aq ÷ O/A + [Cu]_SO) ÷ (0.488256 × %ML/100)   (سایزینگ اکسترکتنت)</div>
+                  <div>[Cu]_LO = %ML/100 × ML</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-850 p-4 rounded-xl border border-slate-800">
+                <h3 className="text-sm font-bold text-emerald-400 flex items-center gap-2 mb-2">
+                  <Sliders className="w-4 h-4" />
+                  <span>ایزوترم تعادلی و حل مرحله‌به‌مرحله استخراج (McCabe-Thiele)</span>
+                </h3>
+                <p className="text-slate-400 text-[11px] mb-2">
+                  موتور محاسباتی نسخه ۷.۱ به‌جای مقیاس خطی بنچ‌مارک، طبقات استخراج جریان مخالف را با ایزوترم لانگمویر حل می‌کند؛ بنابراین تعداد طبقات، O/A، عیار خوراک و اسید آزاد مستقیماً راندمان استخراج را تغییر می‌دهند:
+                </p>
+                <div className="bg-slate-900 p-3 rounded-lg font-mono text-emerald-300 text-xs border border-slate-750 my-2 space-y-1 dir-ltr text-left">
+                  <div>Y_eq = ML × (K×X) ÷ (1 + K×X)   (ایزوترم لانگمویر، K ≈ 6.2 L/g)</div>
+                  <div>K = 6.2 × (5 ÷ [H₂SO₄]_PLS)^0.9   (تصحیح اسیدی تعادل)</div>
+                  <div>Y_k = η_k × Y_eq,k + (1 - η_k) × Y_(k+1)   (η: E1=95% ، E2+=97%)</div>
+                  <div>موازنه هر طبقه: X_(k-1) = X_k + (O/A) × (Y_k - Y_(k+1))</div>
+                  <div>رافینیت با نیمه‌یابی همگرای موازنه جرم کل به‌دست می‌آید</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-850 p-4 rounded-xl border border-slate-800">
+                <h3 className="text-sm font-bold text-purple-400 flex items-center gap-2 mb-2">
+                  <FlaskConical className="w-4 h-4" />
+                  <span>کو-استخراج آهن(III) و موازنه بلید الکترووینینگ</span>
+                </h3>
+                <p className="text-slate-400 text-[11px] mb-2">
+                  فریک تنها با کاهش درصد بارگیری (افزایش جایگاه‌های آزاد اکسترکتنت) کو-استخراج می‌شود؛ بلید EW نیز از موازنه آهن مدار و نه به‌صورت عدد ثابت محاسبه می‌گردد:
+                </p>
+                <div className="bg-slate-900 p-3 rounded-lg font-mono text-purple-300 text-xs border border-slate-750 my-2 space-y-1 dir-ltr text-left">
+                  <div>[Fe³⁺]_LO = [Fe³⁺]_PLS × 0.0153 × ((100 - %ML) ÷ 20)²</div>
+                  <div>Fe_net (kg/h) = Q_org × ([Fe³⁺]_LO,شستشو - [Fe³⁺]_SO)</div>
+                  <div>Q_EWB = 1.856 + 0.32 × Fe_net   [m³/h]</div>
+                  <div>[Fe³⁺]_spent = Fe_net ÷ Q_EWB</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-850 p-4 rounded-xl border border-slate-800">
+                <h3 className="text-sm font-bold text-cyan-400 flex items-center gap-2 mb-2">
+                  <Atom className="w-4 h-4" />
+                  <span>کنترل منگنز و نسبت Fe/Mn در الکترولیت برگشتی</span>
+                </h3>
+                <p className="text-slate-400 text-[11px] mb-2">
+                  منگنز فقط از راه کشیدگی مکانیکی فاز آبی به الکترولیت می‌رسد. در نسبت Fe/Mn کمتر از ۷، اکسیداسیون منگنز به Mn³⁺ و پرمنگنات فعال می‌شود (رسوب MnO₂ روی آند):
+                </p>
+                <div className="bg-slate-900 p-3 rounded-lg font-mono text-cyan-300 text-xs border border-slate-750 my-2 space-y-1 dir-ltr text-left">
+                  <div>[Mn]_spent = (Q_org × e × [Mn]_PLS × 0.307 × (1-η_wash) × κ) ÷ Q_EWB</div>
+                  <div>Fe/Mn = ([Fe³⁺] + [Fe²⁺])_spent ÷ [Mn]_spent</div>
+                  <div>Mn³⁺ = Mn × 0.1667 × (7 - Fe/Mn)   و   MnO₄⁻ = 0.72 × Mn³⁺</div>
                 </div>
               </div>
 
@@ -314,7 +364,13 @@ export const HelpCenter: React.FC<HelpCenterProps> = ({ isOpen, onClose, initial
                 <ul className="list-disc list-inside space-y-1.5 pr-2">
                   <li>
                     <strong className="text-white">جریان کاتدی (۴۰٪ دبی):</strong> احیای مس و واکنش اتلافی احیای فریک:
-                    <div className="font-mono text-emerald-400 my-1 dir-ltr text-left">Cu²⁺ + 2e⁻ → Cu⁰ &nbsp;|&nbsp; Fe³⁺ + e⁻ → Fe²⁺ (افت CE به میزان ۴.۱٪ به ازای هر g/L فریک)</div>
+                    <div className="font-mono text-emerald-400 my-1 dir-ltr text-left">Cu²⁺ + 2e⁻ → Cu⁰ &nbsp;|&nbsp; Fe³⁺ + e⁻ → Fe²⁺</div>
+                    <div className="font-mono text-emerald-400 my-1 dir-ltr text-left">CE (%) = 100 - 9.24 × (1 - e^(-0.9 × [Fe³⁺]_spent))   (کالیبره مرجع)</div>
+                  </li>
+                  <li>
+                    <strong className="text-white">قانون فارادی و انرژی (وابسته به kFactor ورودی):</strong>
+                    <div className="font-mono text-emerald-400 my-1 dir-ltr text-left">m_cell (kg/h) = I(A) × kF(g/Ah) × CE/100 ÷ 1000</div>
+                    <div className="font-mono text-emerald-400 my-1 dir-ltr text-left">E_spec (kWh/t) = V_cell × 1000 ÷ (kF × CE/100)</div>
                   </li>
                   <li>
                     <strong className="text-white">جریان آندی (۶۰٪ دبی):</strong> اکسیداسیون آب و اکسیداسیون فروس و منگنز:

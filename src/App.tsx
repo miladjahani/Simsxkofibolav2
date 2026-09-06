@@ -340,6 +340,32 @@ export function App() {
             <span>شاخص‌های مصرف ویژه معرف‌ها، انرژی و موازنه آب مدار (Specific Consumptions)</span>
           </h3>
 
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-xs font-mono mb-4">
+            <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+              <span className="text-slate-400 block mb-1 font-sans text-[11px]">مصرف ویژه انرژی EW</span>
+              <span className="text-white font-bold text-base">{results.energyConsumption.toFixed(0)}</span>
+              <span className="text-slate-500 text-[10px] block mt-0.5">kWh/t Cu</span>
+            </div>
+
+            <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+              <span className="text-slate-400 block mb-1 font-sans text-[11px]">توان الکتریکی مدار EW</span>
+              <span className="text-white font-bold text-base">{results.totalEnergyMW.toFixed(2)}</span>
+              <span className="text-slate-500 text-[10px] block mt-0.5">MW | ولتاژ: {results.cellVoltage.toFixed(2)} V</span>
+            </div>
+
+            <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+              <span className="text-slate-400 block mb-1 font-sans text-[11px]">تعداد کل سلول‌های EW</span>
+              <span className="text-white font-bold text-base">{Math.round(results.totalCells)}</span>
+              <span className="text-slate-500 text-[10px] block mt-0.5">{Math.round(results.numCommercialCells)} تجاری + {Math.round(results.numScavengerCells)} اسکونجر | {results.cathodePerCell.toFixed(1)} kg/h/سلول</span>
+            </div>
+
+            <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+              <span className="text-slate-400 block mb-1 font-sans text-[11px]">آهن ورودی خالص به الکترولیت</span>
+              <span className="text-amber-400 font-bold text-base">{results.feNetToElectrolyte.toFixed(2)}</span>
+              <span className="text-slate-500 text-[10px] block mt-0.5">kg Fe/h | مس به الکترولیت: {results.copperToElectrolyte.toFixed(0)} kg/h</span>
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs font-mono">
             <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
               <span className="text-slate-400 block mb-1 font-sans text-[11px]">مصرف آب دمین در EW</span>
@@ -377,6 +403,31 @@ export function App() {
               <span className="text-slate-500 text-[10px] block mt-0.5">kg/t Cu</span>
             </div>
           </div>
+
+          {(results.washWaterFlow > 0 || results.mnWashEfficiency > 0) && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-xs font-mono pt-3 border-t border-slate-800/70">
+              <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+                <span className="text-slate-400 block mb-1 font-sans text-[11px]">راندمان شستشوی منگنز</span>
+                <span className="text-emerald-400 font-bold text-base">{results.mnWashEfficiency.toFixed(1)}%</span>
+                <span className="text-slate-500 text-[10px] block mt-0.5">حذف کشیدگی مکانیکی منگنز</span>
+              </div>
+              <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+                <span className="text-slate-400 block mb-1 font-sans text-[11px]">راندمان اسکراب آهن فریک</span>
+                <span className="text-purple-400 font-bold text-base">{results.feScrubEfficiency.toFixed(1)}%</span>
+                <span className="text-slate-500 text-[10px] block mt-0.5">حذف شیمیایی Fe³⁺ از فاز آلی</span>
+              </div>
+              <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+                <span className="text-slate-400 block mb-1 font-sans text-[11px]">دبی آب شستشو / اسکراب</span>
+                <span className="text-sky-400 font-bold text-base">{results.washWaterFlow.toFixed(1)}</span>
+                <span className="text-slate-500 text-[10px] block mt-0.5">m³/h ({results.rawWaterConsumption.toFixed(2)} m³/t Cu)</span>
+              </div>
+              <div className="bg-slate-850 p-2.5 rounded-xl border border-slate-800">
+                <span className="text-slate-400 block mb-1 font-sans text-[11px]">نسبت نهایی Cu/Fe در فاز آلی</span>
+                <span className="text-purple-300 font-bold text-base">{results.cuFeOrganicExEn.toFixed(0)}</span>
+                <span className="text-slate-500 text-[10px] block mt-0.5">مس LO: {results.loCuExEn.toFixed(2)} g/L | آهن LO: {(results.loFeExEn * 1000).toFixed(1)} mg/L</span>
+              </div>
+            </div>
+          )}
         </div>
       </main>
 

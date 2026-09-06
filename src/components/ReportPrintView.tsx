@@ -112,8 +112,43 @@ export const ReportPrintView: React.FC<ReportPrintViewProps> = ({
                 <span className="text-slate-500 block font-sans text-[10px]">نسبت Fe/Mn در الکترولیت برگشتی:</span>
                 <span className="font-bold text-slate-900 text-sm">{results.feMnSpentElectrolyte.toFixed(2)}</span>
               </div>
+              <div className="p-2 rounded border border-slate-200 bg-slate-50">
+                <span className="text-slate-500 block font-sans text-[10px]">مصرف ویژه انرژی الکترووینینگ (DC):</span>
+                <span className="font-bold text-slate-900 text-sm">{results.energyConsumption.toFixed(0)} kWh/t</span>
+              </div>
+              <div className="p-2 rounded border border-slate-200 bg-slate-50">
+                <span className="text-slate-500 block font-sans text-[10px]">ولتاژ سلول / توان مدار EW:</span>
+                <span className="font-bold text-slate-900 text-sm">{results.cellVoltage.toFixed(2)} V / {results.totalEnergyMW.toFixed(2)} MW</span>
+              </div>
             </div>
           </div>
+
+          {/* Wash & Impurity Removal Performance (flowsheets with wash/scrub) */}
+          {(results.washWaterFlow > 0 || results.mnWashEfficiency > 0 || results.feScrubEfficiency > 0) && (
+            <div>
+              <h2 className="text-sm font-bold text-slate-900 border-b border-slate-200 pb-1 mb-2">
+                ۱-الف. عملکرد شستشو و اسکراب ناخالصی‌ها (Wash & Scrub Performance)
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs">
+                <div className="p-2 rounded border border-slate-200 bg-slate-50">
+                  <span className="text-slate-500 block font-sans text-[10px]">دبی آب شستشو / اسکراب:</span>
+                  <span className="font-bold text-slate-900">{results.washWaterFlow.toFixed(2)} m³/h</span>
+                </div>
+                <div className="p-2 rounded border border-slate-200 bg-slate-50">
+                  <span className="text-slate-500 block font-sans text-[10px]">راندمان شستشوی منگنز (Entrainment Wash):</span>
+                  <span className="font-bold text-slate-900">{results.mnWashEfficiency.toFixed(1)}%</span>
+                </div>
+                <div className="p-2 rounded border border-slate-200 bg-slate-50">
+                  <span className="text-slate-500 block font-sans text-[10px]">راندمان اسکراب آهن فریک:</span>
+                  <span className="font-bold text-slate-900">{results.feScrubEfficiency.toFixed(1)}%</span>
+                </div>
+                <div className="p-2 rounded border border-slate-200 bg-slate-50">
+                  <span className="text-slate-500 block font-sans text-[10px]">آهن خالص ورودی به الکترولیت:</span>
+                  <span className="font-bold text-slate-900">{results.feNetToElectrolyte.toFixed(2)} kg Fe/h</span>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Specific Consumptions */}
           <div>
